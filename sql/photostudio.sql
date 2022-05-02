@@ -63,6 +63,16 @@ LEFT JOIN photostudio.schedule
 on client.id=schedule.client_id
 WHERE schedule.id is NULL;
 
+UPDATE `photostudio`.`schedule`
+SET
+`name` = "Special"
+WHERE `id` = 3;
+
+DELETE FROM `photostudio`.`photographer`
+WHERE camera_id=2;
+
+DELETE FROM `photostudio`.`event`
+WHERE name="Family";
 
 
 
