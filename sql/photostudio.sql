@@ -32,6 +32,11 @@ INSERT INTO `photostudio`.`price_list`
 VALUES
 ("Standard", "500$", 1), ("Full", "900$", 1), ("Studio", "100$", 2);
 
+INSERT INTO `photostudio`.`schedule`
+(`name`, `photographer_id`, `client_id`)
+VALUES
+("Standart", 1, 2), ("Individual", 2, 3), ("Specail", 3, 8);
+
 UPDATE `photostudio`.`schedule`
 SET
 `name` = "Standard"
