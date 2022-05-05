@@ -35,24 +35,23 @@ WHERE `id` = 1;
 
 UPDATE `photostudio`.`billing`
 SET `payment_type_id` = 1, `event_id` = 2, `client_id` = 3
-WHERE `client_id` = 4;
+WHERE `client_id` = 2;
 
 UPDATE `photostudio`.`schedule`
 SET `name` = "Special"
 WHERE `id` = 3;
 
 --order by--
-SELECT * FROM photostudio.client ORDER BY date_of_registration DESC;
-SELECT * FROM photostudio.client ORDER BY date_of_registration;
+SELECT * FROM photostudio.price_list WHERE price LIKE '%5%';
+SELECT * FROM photostudio.payment_type WHERE name="Card";
 SELECT * FROM photostudio.client WHERE id=2;
 SELECT * FROM photostudio.client WHERE name="Boris";
 
---inner join--
-SELECT client.id AS "ID", client.name AS "Name", client.phone_number AS "Phone", client.date_of_registration AS "Registration Date"
+--joins--
+SELECT client.id AS "ID", client.name AS "Name", client.phone_number AS "Phone", client.date_of_registration AS "Registration Date", schedule.name AS "Schedule"
 FROM photostudio.client
 LEFT JOIN photostudio.schedule
-ON client.id=schedule.client_id
-WHERE schedule.id IS NULL;
+ON client.id=schedule.client_id;
 
 SELECT billing.id AS "№", payment_type.name AS "Pay", event.name AS "Event", client.name AS "Client",
 client.phone_number AS "Client Phone"
