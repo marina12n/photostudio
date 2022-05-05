@@ -13,7 +13,7 @@ VALUES("Studio"), ("Field"), ("City");
 INSERT INTO `photostudio`.`event` (`name`, `location_id`)
 VALUES ("Wedding", 1), ("Family", 2), ("Portrait", 3);
 
-INSERT INTO `photostudio`.`client` (`name`, `phone_number`, 'date_of_registration')
+INSERT INTO `photostudio`.`client` (`name`, `phone_number`, `date_of_registration`)
 VALUES ("Boris", "+380950000000", "21.04.2022"), ("Joe", "+380981111111", "19.03.2022"), ("Ursula", "+380972222222", "21.01.2022");
 
 INSERT INTO `photostudio`.`payment_type`(`name`)

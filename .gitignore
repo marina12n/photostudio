@@ -25,6 +25,7 @@ hs_err_pid*
 # Java default files
 ../.idea/
 .idea/
+target/
 ./
 
 
