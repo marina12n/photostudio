@@ -83,4 +83,4 @@ DELETE FROM `photostudio`.`event`
 WHERE name="Family";
 
 DELETE FROM photostudio.administrator
-WHERE administrator.name="Nick";.
+WHERE administrator.name="Nick";
