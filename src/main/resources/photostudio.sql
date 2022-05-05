@@ -1,7 +1,5 @@
-ALTER TABLE `photostudio`.`client` MODIFY COLUMN `date_of_registration` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
-
-INSERT INTO `photostudio`.`camera` (`id`, `name`)
-VALUES (1 , "Canon"), (2 , "Sony"), (3 , "Nikon");
+INSERT INTO `photostudio`.`camera` (`name`)
+VALUES ("Canon"), ("Sony"), ("Nikon");
 
 INSERT INTO `photostudio`.`administrator` (`name`)
 VALUES ("Valera"), ("Olena"), ("Nick");
@@ -15,8 +13,8 @@ VALUES("Studio"), ("Field"), ("City");
 INSERT INTO `photostudio`.`event` (`name`, `location_id`)
 VALUES ("Wedding", 1), ("Family", 2), ("Portrait", 3);
 
-INSERT INTO `photostudio`.`client` (`name`, `phone_number`)
-VALUES ("Boris", "+380950000000"), ("Joe", "+380981111111"), ("Ursula", "+380972222222");
+INSERT INTO `photostudio`.`client` (`name`, `phone_number`, 'date_of_registration')
+VALUES ("Boris", "+380950000000", "21.04.2022"), ("Joe", "+380981111111", "19.03.2022"), ("Ursula", "+380972222222", "21.01.2022");
 
 INSERT INTO `photostudio`.`payment_type`(`name`)
 VALUES ("Cash"), ("Card"), ("Crypto");
@@ -28,7 +26,7 @@ INSERT INTO `photostudio`.`price_list` (`name`, `price`, `event_id`)
 VALUES ("Standard", "500$", 1), ("Full", "900$", 1), ("Studio", "100$", 2);
 
 INSERT INTO `photostudio`.`schedule` (`name`, `photographer_id`, `client_id`, `administrator_id`)
-VALUES ("Standart", 1, 2, 3), ("Individual", 2, 3, 2), ("Specail", 3, 8, 1);
+VALUES ("Standart", 1, 2, 3), ("Individual", 2, 3, 2), ("Specail", 3, 1, 1);
 
 --update--
 UPDATE `photostudio`.`schedule`
