@@ -5,6 +5,16 @@ import org.apache.logging.log4j.Logger;
 public class EventModel {
     private static final Logger LOGGER = LogManager.getLogger(EventModel.class);
     private String name;
+    private String location;
+
+    public EventModel() {
+        this.setName("Wedding");
+        this.setLocation("Forest");
+    }
+    public EventModel(String name, String location) {
+        this.setName(name);
+        this.setLocation(location);
+    }
 
     public String getName() {
         return name;
@@ -14,11 +24,11 @@ public class EventModel {
         this.name = name;
     }
 
-    public EventModel() {
-        this.name = "Wedding";
+    public String getLocation() {
+        return location;
     }
 
-    public EventModel(String name) {
-        this.setName(name);
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

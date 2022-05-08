@@ -6,6 +6,19 @@ public class PriceListModel {
     private static final Logger LOGGER = LogManager.getLogger(PriceListModel.class);
     private String name;
     private int price;
+    private String event;
+
+    public PriceListModel() {
+        this.setName("Bob");
+        this.setPrice(100);
+        this.setEvent("Walk");
+    }
+
+    public PriceListModel(String name, int price, String event) {
+        this.setName(name);
+        this.setPrice(price);
+        this.setEvent(event);
+    }
 
     public String getName() {
         return name;
@@ -23,12 +36,11 @@ public class PriceListModel {
         this.price = price;
     }
 
-    public PriceListModel() {
-        this.name = "Bob";
+    public String getEvent() {
+        return event;
     }
 
-    public PriceListModel(String name, int price) {
-        this.setName(name);
-        this.setPrice(price);
+    public void setEvent(String event) {
+        this.event = event;
     }
 }

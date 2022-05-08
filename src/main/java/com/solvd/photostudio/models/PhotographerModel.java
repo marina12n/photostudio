@@ -5,6 +5,12 @@ import org.apache.logging.log4j.Logger;
 public class PhotographerModel {
     private static final Logger LOGGER = LogManager.getLogger(PhotographerModel.class);
     private String name;
+    private String camera;
+
+    public PhotographerModel() {
+        this.setName("Bob");
+        this.setCamera("Canon");
+    }
 
     public String getName() {
         return name;
@@ -14,11 +20,11 @@ public class PhotographerModel {
         this.name = name;
     }
 
-    public PhotographerModel() {
-        this.name = "Bob";
+    public String getCamera() {
+        return camera;
     }
 
-    public PhotographerModel(String name) {
-        this.setName(name);
+    public void setCamera(String camera) {
+        this.camera = camera;
     }
 }

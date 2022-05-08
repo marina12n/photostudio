@@ -6,19 +6,19 @@ public class AdministratorModel {
     private static final Logger LOGGER = LogManager.getLogger(AdministratorModel.class);
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public AdministratorModel() {
         this.name = "Alice";
     }
 
     public AdministratorModel(String name) {
         this.setName(name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

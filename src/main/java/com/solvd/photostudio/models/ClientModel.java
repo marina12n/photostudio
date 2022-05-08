@@ -5,7 +5,14 @@ import org.apache.logging.log4j.Logger;
 public class ClientModel {
     private static final Logger LOGGER = LogManager.getLogger(ClientModel.class);
     private String name;
-    private int phone_number;
+    private String phoneNumber;
+    private String dateOfRegistration;
+
+    public ClientModel() {
+        this.setName("John");
+        this.setPhoneNumber("+380971234567");
+        this.setDateOfRegistration("10/04/2022");
+    }
 
     public String getName() {
         return name;
@@ -15,20 +22,19 @@ public class ClientModel {
         this.name = name;
     }
 
-    public int getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(int phone_number) {
-        this.phone_number = phone_number;
-    }
-    public ClientModel() {
-        this.name = "John";
-        this.phone_number=123;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public ClientModel(String name, int phone_number) {
-        this.setName(name);
-        this.setPhone_number(phone_number);
+    public String getDateOfRegistration() {
+        return dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(String dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 }

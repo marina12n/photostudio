@@ -5,6 +5,16 @@ import org.apache.logging.log4j.Logger;
 public class ScheduleModel {
     private static final Logger LOGGER = LogManager.getLogger(ScheduleModel.class);
     private String name;
+    private String photographer;
+    private String client;
+    private String administrator;
+
+    public ScheduleModel() {
+        this.setName("Standard");
+        this.setPhotographer("Valera");
+        this.setClient("Angelina");
+        this.setAdministrator("Anna");
+    }
 
     public String getName() {
         return name;
@@ -14,11 +24,27 @@ public class ScheduleModel {
         this.name = name;
     }
 
-    public ScheduleModel() {
-        this.name = "Standard";
+    public String getPhotographer() {
+        return photographer;
     }
 
-    public ScheduleModel(String name) {
-        this.setName(name);
+    public void setPhotographer(String photographer) {
+        this.photographer = photographer;
+    }
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public String getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(String administrator) {
+        this.administrator = administrator;
     }
 }
