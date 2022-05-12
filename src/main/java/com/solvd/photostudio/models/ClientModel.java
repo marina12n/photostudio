@@ -37,4 +37,9 @@ public class ClientModel {
     public void setDateOfRegistration(String dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
+
+    @Override
+    public String toString() {
+        return "[Name: " + name + "; Phone: " + phoneNumber + " Date: " + dateOfRegistration + "]";
+    }
 }

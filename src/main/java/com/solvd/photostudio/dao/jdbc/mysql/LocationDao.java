@@ -2,14 +2,22 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.ILocationDao;
 import com.solvd.photostudio.models.LocationModel;
 
-public class LocationDao implements ILocationDao {
+import java.util.List;
+
+public class LocationDao extends AbstractDao implements ILocationDao {
+
     @Override
     public LocationModel getEntity(long id) {
         return null;
     }
 
     @Override
-    public void saveEntity(LocationModel locationModel) {
+    public List<LocationModel> getAllEntity() {
+        return null;
+    }
+
+    @Override
+    public void createEntity(LocationModel locationModel) {
 
     }
 

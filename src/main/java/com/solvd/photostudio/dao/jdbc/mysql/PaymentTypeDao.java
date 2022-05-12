@@ -2,14 +2,22 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IPaymentTypeDao;
 import com.solvd.photostudio.models.PaymentTypeModel;
 
-public class PaymentTypeDao implements IPaymentTypeDao {
+import java.util.List;
+
+public class PaymentTypeDao extends AbstractDao implements IPaymentTypeDao {
+
     @Override
     public PaymentTypeModel getEntity(long id) {
         return null;
     }
 
     @Override
-    public void saveEntity(PaymentTypeModel paymentTypeModel) {
+    public List<PaymentTypeModel> getAllEntity() {
+        return null;
+    }
+
+    @Override
+    public void createEntity(PaymentTypeModel paymentTypeModel) {
 
     }
 

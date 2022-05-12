@@ -2,14 +2,22 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IBillingDao;
 import com.solvd.photostudio.models.BillingModel;
 
-public class BillingDao implements IBillingDao {
+import java.util.List;
+
+public class BillingDao extends AbstractDao implements IBillingDao {
+
     @Override
     public BillingModel getEntity(long id) {
         return null;
     }
 
     @Override
-    public void saveEntity(BillingModel billingModel) {
+    public List<BillingModel> getAllEntity() {
+        return null;
+    }
+
+    @Override
+    public void createEntity(BillingModel billingModel) {
 
     }
 

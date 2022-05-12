@@ -2,14 +2,22 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IPhotographerDao;
 import com.solvd.photostudio.models.PhotographerModel;
 
-public class PhotographerDao implements IPhotographerDao {
+import java.util.List;
+
+public class PhotographerDao extends AbstractDao implements IPhotographerDao {
+
     @Override
     public PhotographerModel getEntity(long id) {
         return null;
     }
 
     @Override
-    public void saveEntity(PhotographerModel photographerModel) {
+    public List<PhotographerModel> getAllEntity() {
+        return null;
+    }
+
+    @Override
+    public void createEntity(PhotographerModel photographerModel) {
 
     }
 
