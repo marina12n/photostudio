@@ -1,5 +1,7 @@
 package com.solvd.photostudio.dao;
 
+import com.solvd.photostudio.models.CameraModel;
+
 import java.util.List;
 
 public interface IBaseDao <T>{
@@ -8,7 +10,7 @@ public interface IBaseDao <T>{
 
     List<T> getAllEntity();
 
-    void createEntity(T t);
+    List<CameraModel> createEntity(T t);
 
     void updateEntity(T t);
 

@@ -14,12 +14,6 @@ public class BillingModel {
         this.setPaymentType("crypto");
     }
 
-    public BillingModel(String event, String client, String paymentType) {
-        this.setEvent(event);
-        this.setClient(client);
-        this.setPaymentType(paymentType);
-    }
-
     public String getEvent() {
         return event;
     }
@@ -42,5 +36,10 @@ public class BillingModel {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    @Override
+    public String toString() {
+        return "[Event: " + event + "; Client: " + client + " Pay: " + paymentType + "]";
     }
 }

@@ -1,5 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IScheduleDao;
+import com.solvd.photostudio.models.CameraModel;
 import com.solvd.photostudio.models.ScheduleModel;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class ScheduleDao implements IScheduleDao {
     }
 
     @Override
-    public void createEntity(ScheduleModel scheduleModel) {
+    public List<CameraModel> createEntity(ScheduleModel scheduleModel) {
 
+        return null;
     }
 
     @Override

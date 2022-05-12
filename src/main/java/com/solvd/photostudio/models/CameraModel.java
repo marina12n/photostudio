@@ -7,11 +7,7 @@ public class CameraModel {
     private String name;
 
     public CameraModel() {
-        this.name = "Sony";
-    }
-
-    public CameraModel(String name) {
-        this.setName(name);
+        this.setName("Sony");
     }
 
     public String getName() {
@@ -20,5 +16,10 @@ public class CameraModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "[Name: " + name + "]";
     }
 }

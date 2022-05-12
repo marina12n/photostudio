@@ -7,11 +7,6 @@ public class ClientHasEventModel {
     private String event;
     private String client;
 
-    public ClientHasEventModel() {
-        this.event = "Family";
-        this.client = "Karina";
-    }
-
     public ClientHasEventModel(String event, String client) {
         this.setEvent(event);
         this.setClient(client);
@@ -31,5 +26,10 @@ public class ClientHasEventModel {
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    @Override
+    public String toString() {
+        return "[Event: " + event + "; Client: " + client + "]";
     }
 }

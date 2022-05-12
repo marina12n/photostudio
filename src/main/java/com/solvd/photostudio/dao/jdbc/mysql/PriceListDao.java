@@ -1,6 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IPriceListDao;
-import com.solvd.photostudio.models.ClientModel;
+import com.solvd.photostudio.models.CameraModel;
 import com.solvd.photostudio.models.PriceListModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,8 +43,9 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
     }
 
     @Override
-    public void createEntity(PriceListModel priceListModel) {
+    public List<CameraModel> createEntity(PriceListModel priceListModel) {
 
+        return null;
     }
 
     @Override

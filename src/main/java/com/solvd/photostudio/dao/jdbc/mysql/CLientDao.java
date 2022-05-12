@@ -1,5 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IClientDao;
+import com.solvd.photostudio.models.CameraModel;
 import com.solvd.photostudio.models.ClientModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,8 +45,9 @@ public class CLientDao extends AbstractDao implements IClientDao {
     }
 
     @Override
-    public void createEntity(ClientModel clientModel) {
+    public List<CameraModel> createEntity(ClientModel clientModel) {
 
+        return null;
     }
 
 

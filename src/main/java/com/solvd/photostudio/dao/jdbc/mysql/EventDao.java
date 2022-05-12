@@ -1,5 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IEventDao;
+import com.solvd.photostudio.models.CameraModel;
 import com.solvd.photostudio.models.EventModel;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class EventDao extends AbstractDao implements IEventDao {
     }
 
     @Override
-    public void createEntity(EventModel eventModel) {
+    public List<CameraModel> createEntity(EventModel eventModel) {
 
+        return null;
     }
 
     @Override

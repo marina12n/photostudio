@@ -7,10 +7,6 @@ public class AdministratorModel {
     private String name;
 
     public AdministratorModel() {
-        this.name = "Alice";
-    }
-
-    public AdministratorModel(String name) {
         this.setName(name);
     }
 
@@ -20,5 +16,10 @@ public class AdministratorModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "[Name: " + name + "]";
     }
 }
