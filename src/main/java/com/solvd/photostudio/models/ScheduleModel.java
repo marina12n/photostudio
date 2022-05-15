@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ScheduleModel {
     private static final Logger LOGGER = LogManager.getLogger(ScheduleModel.class);
+    private int id;
     private String name;
     private String photographer;
     private String client;
@@ -46,5 +47,18 @@ public class ScheduleModel {
 
     public void setAdministrator(String administrator) {
         this.administrator = administrator;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "[ID: " + getId() + "Name: " + getName() + " Photographer: " + getPhotographer() + " Client: " + getClient() +  " Admin: " + getAdministrator() + "]";
     }
 }

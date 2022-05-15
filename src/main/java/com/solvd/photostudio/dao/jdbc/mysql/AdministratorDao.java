@@ -2,6 +2,7 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IAdministratorDAO;
 import com.solvd.photostudio.models.AdministratorModel;
 import com.solvd.photostudio.models.CameraModel;
+import com.solvd.photostudio.models.ClientModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,11 +16,26 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
     private static final String FIND_ALL = "SELECT * FROM administrator ORDER BY id";
     private static final String FIND_BY_ID = "SELECT * FROM administrator WHERE id=?";
     private static final String INSERT = "INSERT INTO administrator(name) VALUES(?)";
-    private static final String UPDATE = "UPDATE user SET name=? WHERE id=?";
+    private static final String UPDATE = "UPDATE administrator SET name=? WHERE id=?";
     private PreparedStatement stmt;
 
     @Override
     public AdministratorModel getEntity(long id) {
+        try {
+            stmt = getConnection().prepareStatement(FIND_BY_ID);
+            stmt.setLong(1, id);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                AdministratorModel admin = new AdministratorModel();
+                admin.setId(resultSet.getInt("id"));
+                admin.setName(resultSet.getString("name"));
+                return admin;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
         return null;
     }
 
@@ -29,9 +45,10 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
             try {
                 getResultSet(FIND_ALL);
                 while (resultSet.next()) {
-                    AdministratorModel client = new AdministratorModel();
-                    client.setName(resultSet.getString("name"));
-                    allAdministrators.add(client);
+                    AdministratorModel admin = new AdministratorModel();
+                    admin.setId(resultSet.getInt("id"));
+                    admin.setName(resultSet.getString("name"));
+                    allAdministrators.add(admin);
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -41,19 +58,45 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
             return allAdministrators;
         }
 
-        @Override
-        public List<CameraModel> createEntity(AdministratorModel administratorModel) {
+    @Override
+    public void createEntity(AdministratorModel administratorModel) {
+        try {
+            stmt = getConnection().prepareStatement(INSERT);
+            stmt.setString(1, administratorModel.getName());
+            stmt.executeUpdate();
 
-            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
         }
+    }
 
     @Override
     public void updateEntity(AdministratorModel administratorModel) {
+        try {
+            stmt = getConnection().prepareStatement(UPDATE);
+            stmt.setInt(2, administratorModel.getId());
+            stmt.setString(1, administratorModel.getName());
+            stmt.executeUpdate();
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
     }
 
     @Override
     public void deleteEntity(long id) {
-
+        try {
+            stmt = getConnection().prepareStatement(DELETE);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
     }
 }

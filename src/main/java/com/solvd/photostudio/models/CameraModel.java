@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CameraModel {
     private static final Logger LOGGER = LogManager.getLogger(CameraModel.class);
+    private int id;
     private String name;
 
     public CameraModel() {
@@ -20,6 +21,14 @@ public class CameraModel {
 
     @Override
     public String toString() {
-        return "[Name: " + name + "]";
+        return "[ID:" + id +  "Name: " + name + "]";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

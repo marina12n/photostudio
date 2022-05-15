@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class PhotographerModel {
     private static final Logger LOGGER = LogManager.getLogger(PhotographerModel.class);
+    private int id;
     private String name;
     private String camera;
 
@@ -26,5 +27,13 @@ public class PhotographerModel {
 
     public void setCamera(String camera) {
         this.camera = camera;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class BillingModel {
     private static final Logger LOGGER = LogManager.getLogger(BillingModel.class);
+    private int id;
     private String event;
     private String client;
     private String paymentType;
@@ -41,5 +42,13 @@ public class BillingModel {
     @Override
     public String toString() {
         return "[Event: " + event + "; Client: " + client + " Pay: " + paymentType + "]";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

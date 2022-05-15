@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class EventModel {
     private static final Logger LOGGER = LogManager.getLogger(EventModel.class);
+    private int id;
     private String name;
     private String location;
 
@@ -30,5 +31,13 @@ public class EventModel {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

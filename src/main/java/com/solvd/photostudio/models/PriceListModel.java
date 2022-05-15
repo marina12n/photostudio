@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class PriceListModel {
     private static final Logger LOGGER = LogManager.getLogger(PriceListModel.class);
+    private int id;
     private String name;
     private String price;
     private String event;
@@ -46,6 +47,14 @@ public class PriceListModel {
 
     @Override
     public String toString() {
-        return "[Name: " + name + "; Price: " + price + " Event: " + event + "]";
+        return "[ID: " + id + " Name: " + name + "; Price: " + price + " Event: " + event + "]";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

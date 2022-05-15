@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ClientModel {
     private static final Logger LOGGER = LogManager.getLogger(ClientModel.class);
+    private int id;
     private String name;
     private String phoneNumber;
     private String dateOfRegistration;
@@ -11,7 +12,15 @@ public class ClientModel {
     public ClientModel() {
         this.setName("John");
         this.setPhoneNumber("+380971234567");
-        this.setDateOfRegistration("10/04/2022");
+        this.setDateOfRegistration("10.04.2022");
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,6 +49,6 @@ public class ClientModel {
 
     @Override
     public String toString() {
-        return "[Name: " + name + "; Phone: " + phoneNumber + " Date: " + dateOfRegistration + "]";
+        return "[" + "Id: " + id + " Name: " + name + " Phone: " + phoneNumber + " Date: " + dateOfRegistration + "]";
     }
 }

@@ -4,8 +4,14 @@ import org.apache.logging.log4j.Logger;
 
 public class ClientHasEventModel {
     private static final Logger LOGGER = LogManager.getLogger(ClientHasEventModel.class);
+    private int id;
     private String event;
     private String client;
+
+    public ClientHasEventModel() {
+        this.setEvent("TEst event");
+        this.setClient("Test client");
+    }
 
     public ClientHasEventModel(String event, String client) {
         this.setEvent(event);
@@ -30,6 +36,14 @@ public class ClientHasEventModel {
 
     @Override
     public String toString() {
-        return "[Event: " + event + "; Client: " + client + "]";
+        return "[ID: " + id + "Event: " + event + "; Client: " + client + "]";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

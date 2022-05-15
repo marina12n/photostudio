@@ -1,44 +1,106 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IClientHasEventDao;
 import com.solvd.photostudio.models.CameraModel;
+import com.solvd.photostudio.models.ClientHasEventModel;
 import com.solvd.photostudio.models.ClientModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(CLientDao.class);
-    private static final String DELETE = "DELETE FROM billing WHERE id=?";
-    private static final String FIND_ALL = "SELECT * FROM client_has_event FULL JOIN event ON event_id=event.id";
-    private static final String FIND_BY_ID = "SELECT * FROM billing WHERE id=?";
-    private static final String INSERT = "INSERT INTO billing(event_id, client_id, payment_type_id) VALUES(?, ?, ?)";
-    private static final String UPDATE = "UPDATE user SET event_id=?, client_id=?, payment_type_id=? WHERE id=?";
-
+    private static final String DELETE = "DELETE FROM client_has_event WHERE id=?";
+    private static final String FIND_ALL = "SELECT * FROM client_has_event INNER JOIN client ON client_id=client.id INNER JOIN event ON event_id=event.id";
+    private static final String FIND_BY_ID = FIND_ALL + " WHERE client_has_event.id=?";
+    private static final String INSERT = "INSERT INTO client_has_event(client_id, event_id) VALUES(?, ?)";
+    private static final String UPDATE = "UPDATE client_has_event SET client_id=?, event_id=?,  WHERE id=?";
+    private PreparedStatement stmt;
 
     @Override
-    public ClientModel getEntity(long id) {
+    public ClientHasEventModel getEntity(long id) {
+        try {
+            stmt = getConnection().prepareStatement(FIND_BY_ID);
+            stmt.setLong(1, id);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                ClientHasEventModel client_has_event = new ClientHasEventModel();
+                client_has_event.setId(resultSet.getInt("id"));
+                client_has_event.setClient(resultSet.getString("client.name"));
+                client_has_event.setEvent(resultSet.getString("event.name"));
+                return client_has_event;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
         return null;
     }
 
     @Override
-    public List<ClientModel> getAllEntity() {
-        return null;
+    public List<ClientHasEventModel> getAllEntity() {
+        List<ClientHasEventModel> allClientsEvents = new ArrayList<>();
+        try {
+            getResultSet(FIND_ALL);
+            while (resultSet.next()) {
+                ClientHasEventModel client_has_event = new ClientHasEventModel();
+                client_has_event.setId(resultSet.getInt("id"));
+                client_has_event.setClient(resultSet.getString("client.name"));
+                client_has_event.setEvent(resultSet.getString("event.name"));
+                allClientsEvents.add(client_has_event);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
+        return allClientsEvents;
     }
 
     @Override
-    public List<CameraModel> createEntity(ClientModel clientModel) {
-
-        return null;
+    public void createEntity(ClientHasEventModel clientHasEventModel) {
+        try {
+            stmt = getConnection().prepareStatement(INSERT);
+            stmt.setString(1, clientHasEventModel.getClient());
+            stmt.setString(2, clientHasEventModel.getEvent());
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
     }
 
     @Override
-    public void updateEntity(ClientModel clientModel) {
-
+    public void updateEntity(ClientHasEventModel clientHasEventModel) {
+        try {
+            stmt = getConnection().prepareStatement(UPDATE);
+            stmt.setInt(3, clientHasEventModel.getId());
+            stmt.setString(1, clientHasEventModel.getClient());
+            stmt.setString(2, clientHasEventModel.getEvent());
+            stmt.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
     }
 
     @Override
     public void deleteEntity(long id) {
+        try {
+            stmt = getConnection().prepareStatement(DELETE);
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            closeAll();
+        }
     }
 }

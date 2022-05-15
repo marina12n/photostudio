@@ -1,6 +1,6 @@
 package com.solvd.photostudio.dao;
 
-import com.solvd.photostudio.models.ClientModel;
+import com.solvd.photostudio.models.ClientHasEventModel;
 
-public interface IClientHasEventDao extends IBaseDao<ClientModel>{
+public interface IClientHasEventDao extends IBaseDao<ClientHasEventModel>{
 }
