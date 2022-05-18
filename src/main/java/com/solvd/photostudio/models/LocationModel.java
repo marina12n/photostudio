@@ -8,7 +8,6 @@ public class LocationModel {
     private String name;
 
     public LocationModel() {
-        this.name = "Studio";
     }
 
     public LocationModel(String name) {
@@ -33,6 +32,6 @@ public class LocationModel {
 
     @Override
     public String toString() {
-        return "[id: " + id + " Name: " + name + "]";
+        return "[id: " + getId() + " Name: " + getName() + "]";
     }
 }

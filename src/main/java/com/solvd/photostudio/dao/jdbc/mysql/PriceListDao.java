@@ -1,8 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IPriceListDao;
-import com.solvd.photostudio.models.CameraModel;
-import com.solvd.photostudio.models.ClientModel;
-import com.solvd.photostudio.models.PriceListModel;
+import com.solvd.photostudio.models.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,24 +20,24 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
 
     @Override
     public PriceListModel getEntity(long id) {
+        PriceListModel price_list = new PriceListModel();
         try {
             stmt = getConnection().prepareStatement(FIND_BY_ID);
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                PriceListModel price_list = new PriceListModel();
                 price_list.setId(resultSet.getInt("id"));
                 price_list.setName(resultSet.getString("name"));
                 price_list.setPrice(resultSet.getString("price"));
-                price_list.setEvent(resultSet.getString("event.name"));
-                return price_list;
+                price_list.setEvents(getPriceListEvents(resultSet.getInt("price_list.event_id")));
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             closeAll();
         }
-        return null;
+        return price_list;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                     price.setId(resultSet.getInt("id"));
                     price.setName(resultSet.getString("name"));
                     price.setPrice(resultSet.getString("price"));
-                    price.setEvent(resultSet.getString("event.name"));
+                    price.setEvents(getPriceListEvents(resultSet.getInt("price_list.event_id")));
                     allPrices.add(price);
                 }
             } catch (SQLException throwables) {
@@ -70,7 +68,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
             //stmt.setInt(1, clientModel.getId());
             stmt.setString(1, priceListModel.getName());
             stmt.setString(2, priceListModel.getPrice());
-            stmt.setString(3, priceListModel.getEvent());
+            stmt.setString(3, priceListModel.getEvents().get(priceListModel.getId()).getName());
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -87,7 +85,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
             stmt.setInt(4, priceListModel.getId());
             stmt.setString(1, priceListModel.getName());
             stmt.setString(2, priceListModel.getPrice());
-            stmt.setString(3, priceListModel.getEvent());
+            stmt.setString(3, priceListModel.getEvents().get(priceListModel.getId()).getName());
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -111,4 +109,24 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
             closeAll();
         }
     }
+
+    private List<EventModel> getPriceListEvents(int event_id) {
+        List<EventModel> events = new ArrayList<>();
+        try {
+            stmt = getConnection().prepareStatement("SELECT * FROM event where id = ?");
+            stmt.setLong(1, event_id);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                EventModel event = new EventModel();
+                event.setId(resultSet.getInt("id"));
+                event.setName(resultSet.getString("name"));
+                event.setLocations(event.getLocations());
+                events.add(event);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return events;
+    }
+
 }
