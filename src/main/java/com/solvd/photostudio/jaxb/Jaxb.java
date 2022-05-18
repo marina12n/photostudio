@@ -22,13 +22,13 @@ public class Jaxb {
         JAXBContext context = JAXBContext.newInstance(Manager.class);
         Marshaller mar = context.createMarshaller();
         mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(manager, new File("D:\\java\\photostudio\\src\\main\\resources\\manager.xml"));
+        mar.marshal(manager, new File("D:\\java\\photostudio\\src\\main\\resources\\manager_jaxb.xml"));
     }
 
     public Manager unmarshall() throws JAXBException, IOException {
         JAXBContext context = JAXBContext.newInstance(Manager.class);
         return (Manager) context.createUnmarshaller()
-                .unmarshal(new FileReader("D:\\java\\photostudio\\src\\main\\resources\\manager.xml"));
+                .unmarshal(new FileReader("D:\\java\\photostudio\\src\\main\\resources\\manager_jaxb.xml"));
     }
 
     public static void main(String[] args) {

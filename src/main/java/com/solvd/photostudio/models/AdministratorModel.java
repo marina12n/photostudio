@@ -8,7 +8,10 @@ public class AdministratorModel {
     private String name;
 
     public AdministratorModel() {
-        this.setName("Test Admin");
+    }
+
+    public AdministratorModel(String name) {
+        this.name =  name;
     }
 
     public String getName() {
@@ -19,16 +22,16 @@ public class AdministratorModel {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "[ID: " + id + "Name: " + name + "]";
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "[id: " + getId() + "Name: " + getName() + "]";
     }
 }

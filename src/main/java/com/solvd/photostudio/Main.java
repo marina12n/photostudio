@@ -8,8 +8,6 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        CLientDao client = new CLientDao();
-        LOGGER.info(client.getAllEntity());
         PriceListDao price = new PriceListDao();
         LOGGER.info(price.getAllEntity());
         BillingDao billing = new BillingDao();
@@ -32,6 +30,8 @@ public class Main {
         ScheduleDao scheduleDao = new ScheduleDao();
         LOGGER.info(scheduleDao.getAllEntity());
         LOGGER.info("----------------------------------------------------");
+        CLientDao client = new CLientDao();
+        LOGGER.info(client.getAllEntity());
         ClientModel clmod = new ClientModel();
         client.createEntity(clmod);
         LOGGER.info(client.getAllEntity());

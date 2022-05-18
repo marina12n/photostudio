@@ -1,42 +1,20 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.List;
 
 public class ClientHasEventModel {
     private static final Logger LOGGER = LogManager.getLogger(ClientHasEventModel.class);
     private int id;
-    private String event;
-    private String client;
+    private List<ClientModel> clients;
+    private List<EventModel> events;
 
     public ClientHasEventModel() {
-        this.setEvent("TEst event");
-        this.setClient("Test client");
     }
 
-    public ClientHasEventModel(String event, String client) {
-        this.setEvent(event);
-        this.setClient(client);
-    }
-
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
-
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
-    }
-
-    @Override
-    public String toString() {
-        return "[ID: " + id + "Event: " + event + "; Client: " + client + "]";
+    public ClientHasEventModel(String event, List<ClientModel> clients, List<EventModel> events) {
+        this.setClients(clients);
+        this.setEvents(events);
     }
 
     public int getId() {
@@ -45,5 +23,26 @@ public class ClientHasEventModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<ClientModel> getClients() {
+        return clients;
+    }
+
+    public void setClients(List<ClientModel> clients) {
+        this.clients = clients;
+    }
+
+    public List<EventModel> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<EventModel> events) {
+        this.events = events;
+    }
+
+    @Override
+    public String toString() {
+        return "[id: " + getId() + "Client: " + getClients() + "; Event: " + getEvents() + "]";
     }
 }

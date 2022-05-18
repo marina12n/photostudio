@@ -2,23 +2,22 @@ package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class PriceListModel {
     private static final Logger LOGGER = LogManager.getLogger(PriceListModel.class);
     private int id;
     private String name;
     private String price;
-    private String event;
+    private List<EventModel> events;
 
     public PriceListModel() {
-        this.setName("Bob");
-        this.setPrice("100$");
-        this.setEvent("Walk");
     }
 
-    public PriceListModel(String name, String price, String event) {
-        this.setName(name);
-        this.setPrice(price);
-        this.setEvent(event);
+    public PriceListModel(String name, String price, String event, List<EventModel> events) {
+        this.name = name;
+        this.price = price;
+        this.setEvents(events);
     }
 
     public String getName() {
@@ -37,24 +36,24 @@ public class PriceListModel {
         this.price = price;
     }
 
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
-
-    @Override
-    public String toString() {
-        return "[ID: " + id + " Name: " + name + "; Price: " + price + " Event: " + event + "]";
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<EventModel> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<EventModel> events) {
+        this.events = events;
+    }
+
+    @Override
+    public String toString() {
+        return "[id: " + getId() + " Name: " + getName() + "; Price: " + getPrice() + " Event: " + getEvents() + "]";
     }
 }

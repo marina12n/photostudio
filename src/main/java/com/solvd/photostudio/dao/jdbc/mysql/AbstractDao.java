@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class AbstractDao {
+public abstract class AbstractDao {
     private Statement statement;
     protected ResultSet resultSet;
     private Connection connection;

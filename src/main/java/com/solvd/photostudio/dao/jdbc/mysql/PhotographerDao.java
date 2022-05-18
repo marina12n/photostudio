@@ -22,23 +22,22 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
 
     @Override
     public PhotographerModel getEntity(long id) {
+        PhotographerModel photographer = new PhotographerModel();
         try {
             stmt = getConnection().prepareStatement(FIND_BY_ID);
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                PhotographerModel photographer = new PhotographerModel();
                 photographer.setId(resultSet.getInt("id"));
                 photographer.setName(resultSet.getString("name"));
-                photographer.setCamera(resultSet.getString("camera.name"));
-                return photographer;
+                photographer.setCameras(getPhotographerCameras(photographer.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             closeAll();
         }
-        return null;
+        return photographer;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
                 PhotographerModel photographer = new PhotographerModel();
                 photographer.setId(resultSet.getInt("id"));
                 photographer.setName(resultSet.getString("name"));
-                photographer.setCamera(resultSet.getString("camera.name"));
+                photographer.setCameras(getPhotographerCameras(photographer.getId()));
                 allPhotographers.add(photographer);
             }
         } catch (SQLException throwables) {
@@ -66,7 +65,6 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
         try {
             stmt = getConnection().prepareStatement(INSERT);
             stmt.setString(1, photographerModel.getName());
-            stmt.setString(2, photographerModel.getCamera());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -81,7 +79,7 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
             stmt = getConnection().prepareStatement(UPDATE);
             stmt.setInt(3, photographerModel.getId());
             stmt.setString(1, photographerModel.getName());
-            stmt.setString(2, photographerModel.getCamera());
+            stmt.setString(2, photographerModel.getCameras().get(photographerModel.getId()).getName());
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -102,5 +100,23 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
         } finally {
             closeAll();
         }
+    }
+
+    private List<CameraModel> getPhotographerCameras(int camera_id) {
+        List<CameraModel> cameras = new ArrayList<>();
+        try {
+            stmt = getConnection().prepareStatement("SELECT * FROM camera where id = ?");
+            stmt.setLong(1, camera_id);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                CameraModel camera = new CameraModel();
+                camera.setId(resultSet.getInt("id"));
+                camera.setName(resultSet.getString("name"));
+                cameras.add(camera);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return cameras;
     }
 }

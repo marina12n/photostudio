@@ -11,6 +11,10 @@ public class CameraModel {
         this.setName("Sony");
     }
 
+    public CameraModel(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -19,10 +23,6 @@ public class CameraModel {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "[ID:" + id +  "Name: " + name + "]";
-    }
 
     public int getId() {
         return id;
@@ -30,5 +30,10 @@ public class CameraModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "[id: " + getId() +  " Name: " + getName() + "]";
     }
 }

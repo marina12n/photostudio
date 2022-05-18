@@ -8,7 +8,6 @@ public class PaymentTypeModel {
     private String name;
 
     public PaymentTypeModel() {
-        this.name = "Cash";
     }
 
     public PaymentTypeModel(String name) {
@@ -25,7 +24,7 @@ public class PaymentTypeModel {
 
     @Override
     public String toString() {
-        return "[ID: " + getId() + "Name: " + name + "]";
+        return "[id: " + getId() + "Name: " + name + "]";
     }
 
     public int getId() {

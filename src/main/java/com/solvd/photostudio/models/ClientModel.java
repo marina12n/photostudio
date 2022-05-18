@@ -10,9 +10,12 @@ public class ClientModel {
     private String dateOfRegistration;
 
     public ClientModel() {
-        this.setName("John");
-        this.setPhoneNumber("+380971234567");
-        this.setDateOfRegistration("10.04.2022");
+    }
+
+    public ClientModel(String name, String phoneNumber, String dateOfRegistration) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.dateOfRegistration = dateOfRegistration;
     }
 
     public int getId() {
@@ -49,6 +52,6 @@ public class ClientModel {
 
     @Override
     public String toString() {
-        return "[" + "Id: " + id + " Name: " + name + " Phone: " + phoneNumber + " Date: " + dateOfRegistration + "]";
+        return "[" + "id: " + getId() + " Name: " + getName() + " Phone: " + getPhoneNumber() + " Date: " + getDateOfRegistration() + "]";
     }
 }
