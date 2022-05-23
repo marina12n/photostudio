@@ -30,8 +30,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 client_has_event.setId(resultSet.getInt("id"));
-                client_has_event.setClients(getClients(resultSet.getInt("client_has_event.client_id")));
-                client_has_event.setEvents(getEvents(resultSet.getInt("client_has_event.event_id")));
+                client_has_event.setClients(getClients(resultSet.getInt("client_id")));
+                client_has_event.setEvents(getEvents(resultSet.getInt("event_id")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -49,8 +49,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
             while (resultSet.next()) {
                 ClientHasEventModel client_has_event = new ClientHasEventModel();
                 client_has_event.setId(resultSet.getInt("id"));
-                client_has_event.setClients(getClients(resultSet.getInt("client_has_event.client_id")));
-                client_has_event.setEvents(getEvents(resultSet.getInt("client_has_event.event_id")));
+                client_has_event.setClients(getClients(resultSet.getInt("client_id")));
+                client_has_event.setEvents(getEvents(resultSet.getInt("event_id")));
                 allClientsEvents.add(client_has_event);
             }
         } catch (SQLException throwables) {
@@ -114,7 +114,7 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
                 EventModel event = new EventModel();
                 event.setId(resultSet.getInt("id"));
                 event.setName(resultSet.getString("name"));
-                event.setLocations(event.getLocations());
+                event.setLocationModel(event.getLocationModel());
                 events.add(event);
             }
         } catch (SQLException e) {

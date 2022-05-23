@@ -27,9 +27,9 @@ public class ScheduleDao extends AbstractDao implements IScheduleDao {
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 schedule.setName(resultSet.getString("name"));
-                schedule.setPhotographers(getSchedulePhotographers(resultSet.getInt("schedule.photographer_id")));
-                schedule.setAdministratorModel(new AdministratorModel(resultSet.getString("administrator.name")));
-                schedule.setClients(getScheduleClients(resultSet.getInt("schedule.client_id")));
+                //schedule.setPhotographers(getSchedulePhotographers(resultSet.getInt("photographer_id")));
+                schedule.setAdministratorModel(new AdministratorModel());
+                schedule.setClients(getScheduleClients(resultSet.getInt("client_id")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -47,9 +47,9 @@ public class ScheduleDao extends AbstractDao implements IScheduleDao {
             while (resultSet.next()) {
                 ScheduleModel schedule = new ScheduleModel();
                 schedule.setName(resultSet.getString("name"));
-                schedule.setPhotographers(getSchedulePhotographers(resultSet.getInt("schedule.photographer_id")));
-                schedule.setAdministratorModel(new AdministratorModel(resultSet.getString("administrator.name")));
-                schedule.setClients(getScheduleClients(resultSet.getInt("schedule.client_id")));
+                //schedule.setPhotographers(getSchedulePhotographers(resultSet.getInt("photographer_id")));
+                schedule.setAdministratorModel(new AdministratorModel());
+                schedule.setClients(getScheduleClients(resultSet.getInt("client_id")));
                 allSchedule.add(schedule);
             }
         } catch (SQLException throwables) {
@@ -127,7 +127,7 @@ public class ScheduleDao extends AbstractDao implements IScheduleDao {
         return clients;
     }
 
-    private List<PhotographerModel> getSchedulePhotographers(int photographer_id) {
+ /*   private List<PhotographerModel> getSchedulePhotographers(int photographer_id) {
         List<PhotographerModel> photographers = new ArrayList<>();
         try {
             stmt = getConnection().prepareStatement("SELECT * FROM photographer where id = ?");
@@ -144,5 +144,5 @@ public class ScheduleDao extends AbstractDao implements IScheduleDao {
             LOGGER.warn(e.getMessage());
         }
         return photographers;
-    }
+    }*/
 }

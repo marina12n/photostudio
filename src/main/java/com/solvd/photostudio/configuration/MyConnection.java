@@ -14,7 +14,6 @@ public class MyConnection {
 
         private MyConnection() {
             try {
-                LOGGER.info("Register driver ...");
                 Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();

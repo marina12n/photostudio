@@ -7,14 +7,14 @@ public class PhotographerModel {
     private static final Logger LOGGER = LogManager.getLogger(PhotographerModel.class);
     private int id;
     private String name;
-    private List<CameraModel> cameras;
+    private int camera_id;
 
     public PhotographerModel() {
     }
 
-    public PhotographerModel(String name, List<CameraModel> cameras) {
-        this.name = name;
-        this.setCameras(cameras);
+    public PhotographerModel(String name, int camera_id) {
+        this.setName(name);
+        this.setCamera_id(camera_id);
     }
 
     public String getName() {
@@ -33,16 +33,17 @@ public class PhotographerModel {
         this.id = id;
     }
 
-    public List<CameraModel> getCameras() {
-        return cameras;
+
+    public int getCamera_id() {
+        return camera_id;
     }
 
-    public void setCameras(List<CameraModel> cameras) {
-        this.cameras = cameras;
+    public void setCamera_id(int camera_id) {
+        this.camera_id = camera_id;
     }
 
     @Override
     public String toString() {
-        return "[" + "id: " + getId() + " Name: " + getName() + "; Camera: " + getCameras() + "]";
+        return "[" + "id: " + getId() + " Name: " + getName() + "]";
     }
 }

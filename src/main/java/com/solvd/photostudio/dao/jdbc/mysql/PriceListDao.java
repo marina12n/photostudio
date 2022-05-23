@@ -29,7 +29,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                 price_list.setId(resultSet.getInt("id"));
                 price_list.setName(resultSet.getString("name"));
                 price_list.setPrice(resultSet.getString("price"));
-                price_list.setEvents(getPriceListEvents(resultSet.getInt("price_list.event_id")));
+                price_list.setEvents(getPriceListEvents(resultSet.getInt("event_id")));
 
             }
         } catch (SQLException throwables) {
@@ -50,7 +50,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                     price.setId(resultSet.getInt("id"));
                     price.setName(resultSet.getString("name"));
                     price.setPrice(resultSet.getString("price"));
-                    price.setEvents(getPriceListEvents(resultSet.getInt("price_list.event_id")));
+                    price.setEvents(getPriceListEvents(resultSet.getInt("event_id")));
                     allPrices.add(price);
                 }
             } catch (SQLException throwables) {
@@ -120,7 +120,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                 EventModel event = new EventModel();
                 event.setId(resultSet.getInt("id"));
                 event.setName(resultSet.getString("name"));
-                event.setLocations(event.getLocations());
+                event.setLocationModel(event.getLocationModel());
                 events.add(event);
             }
         } catch (SQLException e) {

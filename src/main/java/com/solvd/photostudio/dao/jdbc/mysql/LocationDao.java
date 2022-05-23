@@ -2,10 +2,12 @@ package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.ILocationDao;
 import com.solvd.photostudio.models.AdministratorModel;
 import com.solvd.photostudio.models.CameraModel;
+import com.solvd.photostudio.models.EventModel;
 import com.solvd.photostudio.models.LocationModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,22 +24,22 @@ public class LocationDao extends AbstractDao implements ILocationDao {
 
     @Override
     public LocationModel getEntity(long id) {
+        LocationModel location = new LocationModel();
         try {
             stmt = getConnection().prepareStatement(FIND_BY_ID);
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                LocationModel location = new LocationModel();
                 location.setId(resultSet.getInt("id"));
                 location.setName(resultSet.getString("name"));
-                return location;
+                location.setEvents(getEventsLocation(location.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             closeAll();
         }
-        return null;
+        return location;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class LocationDao extends AbstractDao implements ILocationDao {
                 LocationModel location = new LocationModel();
                 location.setId(resultSet.getInt("id"));
                 location.setName(resultSet.getString("name"));
+                location.setEvents(getEventsLocation(location.getId()));
                 allLocations.add(location);
             }
         } catch (SQLException throwables) {
@@ -64,6 +67,7 @@ public class LocationDao extends AbstractDao implements ILocationDao {
         try {
             stmt = getConnection().prepareStatement(INSERT);
             stmt.setString(1, locationModel.getName());
+            stmt.setArray(2, (Array) getEventsLocation(locationModel.getId()));
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -79,6 +83,7 @@ public class LocationDao extends AbstractDao implements ILocationDao {
             stmt = getConnection().prepareStatement(UPDATE);
             stmt.setInt(2, locationModel.getId());
             stmt.setString(1, locationModel.getName());
+            stmt.setArray(2, (Array) getEventsLocation(locationModel.getId()));
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -99,5 +104,24 @@ public class LocationDao extends AbstractDao implements ILocationDao {
         } finally {
             closeAll();
         }
+    }
+
+    @Override
+    public List<EventModel> getEventsLocation(int location_id) {
+        List<EventModel> events = new ArrayList<>();
+        try {
+            stmt = getConnection().prepareStatement("SELECT * FROM event where location_id = ?");
+            stmt.setLong(1, location_id);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                EventModel event = new EventModel();
+                event.setId(resultSet.getInt("id"));
+                event.setName(resultSet.getString("name"));
+                events.add(event);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return events;
     }
 }

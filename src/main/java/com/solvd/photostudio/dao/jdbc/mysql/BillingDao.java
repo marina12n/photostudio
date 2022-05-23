@@ -26,8 +26,8 @@ public class BillingDao extends AbstractDao implements IBillingDao {
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                billing.setEvents(getBillingEvents(resultSet.getInt("billing.event_id")));
-                billing.setClients(getBillingClients(resultSet.getInt("billing.client_id")));
+                billing.setEvents(getBillingEvents(resultSet.getInt("event_id")));
+                billing.setClients(getBillingClients(resultSet.getInt("client_id")));
                 billing.setPaymentType(new PaymentTypeModel(resultSet.getString("payment_type.name")));
             }
         } catch (SQLException throwables) {
@@ -45,8 +45,8 @@ public class BillingDao extends AbstractDao implements IBillingDao {
             getResultSet(FIND_ALL);
             while (resultSet.next()) {
                 BillingModel billing = new BillingModel();
-                billing.setEvents(getBillingEvents(billing.getId()));
-                billing.setClients(getBillingClients(billing.getId()));
+                billing.setEvents(getBillingEvents(resultSet.getInt("event_id")));
+                billing.setClients(getBillingClients(resultSet.getInt("client_id")));
                 billing.setPaymentType(new PaymentTypeModel(resultSet.getString("payment_type.name")));
                 allBilling.add(billing);
             }
@@ -115,7 +115,7 @@ public class BillingDao extends AbstractDao implements IBillingDao {
                 EventModel event = new EventModel();
                 event.setId(resultSet.getInt("id"));
                 event.setName(resultSet.getString("name"));
-                event.setLocations(event.getLocations());
+                event.setLocationModel(event.getLocationModel());
                 events.add(event);
             }
         } catch (SQLException e) {

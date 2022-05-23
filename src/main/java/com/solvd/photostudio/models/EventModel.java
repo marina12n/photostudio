@@ -5,16 +5,20 @@ import java.util.List;
 
 public class EventModel {
     private static final Logger LOGGER = LogManager.getLogger(EventModel.class);
-    private int id;
+    private long id;
     private String name;
-    private List<LocationModel> locations;
+    private LocationModel locationModel;
 
     public EventModel() {
     }
 
-    public EventModel(String name, List<LocationModel> locations) {
+    public EventModel(String name) {
         this.setName(name);
-        this.setLocations(locations);
+    }
+
+    public EventModel(String name, LocationModel locationModel) {
+        this.setName(name);
+        this.setLocationModel(locationModel);
     }
 
     public String getName() {
@@ -26,23 +30,25 @@ public class EventModel {
     }
 
     public int getId() {
-        return id;
+        return (int) id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public List<LocationModel> getLocations() {
-        return locations;
+
+
+    public LocationModel getLocationModel() {
+        return locationModel;
     }
 
-    public void setLocations(List<LocationModel> locations) {
-        this.locations = locations;
+    public void setLocationModel(LocationModel locationModel) {
+        this.locationModel = locationModel;
     }
 
     @Override
     public String toString() {
-        return "[" + "Id: " + getId() + "Name: " + getName() + "  Location: " + getLocations() + "]";
+        return "[" + "Id: " + getId() + "Name: " + getName() + "Location: " + getLocationModel() + "]";
     }
 }

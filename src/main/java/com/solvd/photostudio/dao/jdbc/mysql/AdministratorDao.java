@@ -1,8 +1,6 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IAdministratorDAO;
 import com.solvd.photostudio.models.AdministratorModel;
-import com.solvd.photostudio.models.CameraModel;
-import com.solvd.photostudio.models.ClientModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,23 +19,24 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
 
     @Override
     public AdministratorModel getEntity(long id) {
+        AdministratorModel admin = new AdministratorModel();
         try {
             stmt = getConnection().prepareStatement(FIND_BY_ID);
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                AdministratorModel admin = new AdministratorModel();
                 admin.setId(resultSet.getInt("id"));
                 admin.setName(resultSet.getString("name"));
-                return admin;
+                admin.setScheduleModel(new ScheduleDao().getEntity(admin.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             closeAll();
         }
-        return null;
+        return admin;
     }
+
 
     @Override
     public List<AdministratorModel> getAllEntity() {
@@ -86,6 +85,7 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
             closeAll();
         }
     }
+
 
     @Override
     public void deleteEntity(long id) {

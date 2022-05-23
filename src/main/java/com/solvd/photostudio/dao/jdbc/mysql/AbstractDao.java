@@ -1,6 +1,7 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 
 import com.solvd.photostudio.configuration.MyConnection;
+import com.solvd.photostudio.models.AdministratorModel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
