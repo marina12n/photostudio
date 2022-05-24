@@ -43,13 +43,13 @@ public class CameraDao extends AbstractDao implements ICameraDao {
     @Override
     public List<CameraModel> getAllEntity() {
         List<CameraModel> allCameras = new ArrayList<>();
-        CameraModel camera = new CameraModel();
+
         try {
             getResultSet(FIND_ALL);
             while (resultSet.next()) {
+                CameraModel camera = new CameraModel();
                 camera.setId(resultSet.getInt("id"));
                 camera.setName(resultSet.getString("name"));
-                camera.setPhotographers(getPhotographers(camera.getId()));
                 allCameras.add(camera);
             }
         } catch (SQLException throwables) {
@@ -57,6 +57,7 @@ public class CameraDao extends AbstractDao implements ICameraDao {
         } finally {
             closeAll();
         }
+        allCameras.forEach(cameraModel -> cameraModel.setPhotographers(getPhotographers(cameraModel.getId())));
         return allCameras;
     }
 

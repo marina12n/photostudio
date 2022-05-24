@@ -106,4 +106,24 @@ public class CLientDao extends AbstractDao implements IClientDao {
             closeAll();
         }
     }
+
+  /*  private List<ClientModel> getScheduleClients(int client_id) {
+        List<ClientModel> clients = new ArrayList<>();
+        try {
+            stmt = getConnection().prepareStatement("SELECT * FROM client where id = ?");
+            stmt.setLong(1, client_id);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                ClientModel client = new ClientModel();
+                client.setId(resultSet.getInt("id"));
+                client.setName(resultSet.getString("name"));
+                client.setPhoneNumber(resultSet.getString("phone_number"));
+                client.setDateOfRegistration(resultSet.getString("date_of_registration"));
+                clients.add(client);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return clients;
+    }*/
 }

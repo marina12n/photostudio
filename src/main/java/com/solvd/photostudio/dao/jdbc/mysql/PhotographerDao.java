@@ -1,6 +1,7 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.IPhotographerDao;
 import com.solvd.photostudio.models.PhotographerModel;
+import com.solvd.photostudio.models.ScheduleModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +30,7 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
             if (resultSet.next()) {
                 photographer.setId(resultSet.getInt("id"));
                 photographer.setName(resultSet.getString("name"));
+                photographer.setScheduleModels(getSchedules(photographer.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -54,6 +56,7 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
         } finally {
             closeAll();
         }
+        allPhotographers.forEach(photographerModel -> photographerModel.setScheduleModels(getSchedules(photographerModel.getId())));
         return allPhotographers;
     }
 
@@ -98,6 +101,27 @@ public class PhotographerDao extends AbstractDao implements IPhotographerDao {
         } finally {
             closeAll();
         }
+    }
+
+    public List<ScheduleModel> getSchedules(int photographer_id) {
+        List<ScheduleModel> scheduleModels = new ArrayList<>();
+        try {
+            stmt = getConnection().prepareStatement("SELECT * FROM schedule where photographer_id = ?");
+            stmt.setLong(1, photographer_id);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                ScheduleModel scheduleModel = new ScheduleModel();
+                scheduleModel.setId(resultSet.getInt("id"));
+                scheduleModel.setName(resultSet.getString("name"));
+                scheduleModel.setPhotographer_id(resultSet.getInt("photographer_id"));
+                scheduleModel.setClient_id(resultSet.getInt("client_id"));
+                scheduleModel.setAdministrator_id(resultSet.getInt("administrator_id"));
+                scheduleModels.add(scheduleModel);
+            }
+        } catch (SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return scheduleModels;
     }
 
 }

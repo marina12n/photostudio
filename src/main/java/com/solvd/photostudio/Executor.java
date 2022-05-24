@@ -1,16 +1,10 @@
 package com.solvd.photostudio;
 import com.solvd.photostudio.dao.jdbc.mysql.*;
-import com.solvd.photostudio.models.CameraModel;
-import com.solvd.photostudio.models.ClientModel;
-import com.solvd.photostudio.models.PhotographerModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Main {
-    private static final Logger LOGGER = LogManager.getLogger(Main.class);
+public class Executor {
+    private static final Logger LOGGER = LogManager.getLogger(Executor.class);
 
     public static void main(String[] args) {
         /*PriceListDao price = new PriceListDao();
@@ -55,23 +49,26 @@ public class Main {
         LocationDao locationDao = new LocationDao();
         LOGGER.info(locationDao.getAllEntity());*/
 
+        // Photographer block
         PhotographerDao photographerDao = new PhotographerDao();
-        /*LOGGER.info(photographerDao.getAllEntity());
-        photographerDao.createEntity(new PhotographerModel("Joshua King", 3));
+        LOGGER.info(photographerDao.getAllEntity());
+        /*photographerDao.createEntity(new PhotographerModel("Joshua King", 3));
         PhotographerModel test_photographer = photographerDao.getEntity(6);
         LOGGER.info(test_photographer);
         test_photographer.setCamera_id(2);
-        photographerDao.updateEntity(test_photographer);*/
+        photographerDao.updateEntity(test_photographer);
         LOGGER.info(photographerDao.getAllEntity());
-        LOGGER.info(photographerDao.getEntity(6));
+        LOGGER.info(photographerDao.getEntity(6));*/
 
-        CameraDao camera = new CameraDao();
+        // Camera block
+        /*CameraDao camera = new CameraDao();
         LOGGER.info(camera.getAllEntity());
-        //camera.createEntity(new CameraModel("Sony"));
+        camera.createEntity(new CameraModel("Sony"));
         CameraModel cameraModel = camera.getEntity(4);
         cameraModel.setName("Phillips");
         camera.updateEntity(cameraModel);
-        LOGGER.info(camera.getEntity(4));
+        LOGGER.info(camera.getEntity(4));*/
+
 
 
 
