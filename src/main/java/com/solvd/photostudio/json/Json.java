@@ -1,6 +1,5 @@
 package com.solvd.photostudio.json;
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,14 +19,14 @@ public class Json {
     }
 
     ObjectMapper mapper = new ObjectMapper();
-//        try {
-//            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("D:\\java\\photostudio\\src\\main\\resources\\assistant_json.xml"), animalObj);
-//            LOGGER.info("Done");
-//
-//        } catch (JsonGenerationException e) {
-//            e.printStackTrace();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    try {
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("D:\\java\\photostudio\\src\\main\\resources\\assistant_json.xml"), assistant);
+        LOGGER.info("Done");
+
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 }
