@@ -1,24 +1,23 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.List;
 
 public class ScheduleModel {
     private static final Logger LOGGER = LogManager.getLogger(ScheduleModel.class);
     private int id;
     private String name;
-    private int photographer_id;
-    private int client_id;
-    private int administrator_id;
+    private PhotographerModel photographerModel;
+    private ClientModel clientModel;
+    private AdministratorModel administratorModel;
 
     public ScheduleModel() {
     }
 
-    public ScheduleModel(String name, int photographer_id, int client_id, int administrator_id) {
+    public ScheduleModel(String name, PhotographerModel photographerModel, ClientModel clientModel, AdministratorModel administratorModel) {
         this.setName(name);
-        this.setPhotographer_id(photographer_id);
-        this.setClient_id(client_id);
-        this.setAdministrator_id(administrator_id);
+        this.setPhotographerModel(photographerModel);
+        this.setClientModel(clientModel);
+        this.setAdministratorModel(administratorModel);
     }
 
     public int getId() {
@@ -37,29 +36,28 @@ public class ScheduleModel {
         this.name = name;
     }
 
-
-    public int getPhotographer_id() {
-        return photographer_id;
+    public PhotographerModel getPhotographerModel() {
+        return photographerModel;
     }
 
-    public void setPhotographer_id(int photographer_id) {
-        this.photographer_id = photographer_id;
+    public void setPhotographerModel(PhotographerModel photographerModel) {
+        this.photographerModel = photographerModel;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public ClientModel getClientModel() {
+        return clientModel;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClientModel(ClientModel clientModel) {
+        this.clientModel = clientModel;
     }
 
-    public int getAdministrator_id() {
-        return administrator_id;
+    public AdministratorModel getAdministratorModel() {
+        return administratorModel;
     }
 
-    public void setAdministrator_id(int administrator_id) {
-        this.administrator_id = administrator_id;
+    public void setAdministratorModel(AdministratorModel administratorModel) {
+        this.administratorModel = administratorModel;
     }
 
     @Override
@@ -67,9 +65,9 @@ public class ScheduleModel {
         return "Schedule: {" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
-                ", photographer_id=" + getPhotographer_id() +
-                ", client_id=" + getClient_id() +
-                ", administrator_id=" + getAdministrator_id() +
+                ", photographer_id=" + getPhotographerModel() +
+                ", client_id=" + getClientModel() +
+                ", administrator_id=" + getAdministratorModel() +
                 '}';
     }
 }

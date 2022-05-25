@@ -1,6 +1,5 @@
 package com.solvd.photostudio.dao.jdbc.mysql;
 import com.solvd.photostudio.dao.ICameraDao;
-import com.solvd.photostudio.models.AdministratorModel;
 import com.solvd.photostudio.models.CameraModel;
 import com.solvd.photostudio.models.PhotographerModel;
 import org.apache.logging.log4j.LogManager;

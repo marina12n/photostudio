@@ -1,7 +1,6 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 public class CameraModel {
@@ -13,8 +12,17 @@ public class CameraModel {
     public CameraModel() {
     }
 
-    public CameraModel(String name){
+    public CameraModel(String name, List<PhotographerModel> photographers) {
         this.setName(name);
+        this.setPhotographers(photographers);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -23,15 +31,6 @@ public class CameraModel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public List<PhotographerModel> getPhotographers() {

@@ -6,5 +6,4 @@ import com.solvd.photostudio.models.ScheduleModel;
 import java.util.List;
 
 public interface IPhotographerDao extends IBaseDao<PhotographerModel>{
-    List<ScheduleModel> getSchedules(int id);
 }

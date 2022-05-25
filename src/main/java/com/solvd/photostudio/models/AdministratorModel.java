@@ -6,14 +6,12 @@ public class AdministratorModel {
     private static final Logger LOGGER = LogManager.getLogger(AdministratorModel.class);
     private int id;
     private String name;
-    private ScheduleModel scheduleModel;
 
     public AdministratorModel() {
     }
 
-    public AdministratorModel(String name, ScheduleModel scheduleModel) {
+    public AdministratorModel(String name) {
         this.setName(name);
-        this.setScheduleModel(scheduleModel);
     }
 
     public String getName() {
@@ -32,17 +30,13 @@ public class AdministratorModel {
         this.id = id;
     }
 
-    public ScheduleModel getScheduleModel() {
-        return scheduleModel;
-    }
 
-    public void setScheduleModel(ScheduleModel scheduleModel) {
-        this.scheduleModel = scheduleModel;
-    }
 
     @Override
     public String toString() {
-        return "[id: " + getId() + "Name: " + getName() + "Schedule:" + getScheduleModel() + "]";
+        return "Administrator: {" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                '}';
     }
-
 }

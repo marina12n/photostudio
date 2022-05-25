@@ -1,5 +1,9 @@
 package com.solvd.photostudio;
 import com.solvd.photostudio.dao.jdbc.mysql.*;
+import com.solvd.photostudio.models.BillingModel;
+import com.solvd.photostudio.models.ClientModel;
+import com.solvd.photostudio.models.EventModel;
+import com.solvd.photostudio.models.PaymentTypeModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,9 +54,9 @@ public class Executor {
         LOGGER.info(locationDao.getAllEntity());*/
 
         // Photographer block
-        PhotographerDao photographerDao = new PhotographerDao();
+        /*PhotographerDao photographerDao = new PhotographerDao();
         LOGGER.info(photographerDao.getAllEntity());
-        /*photographerDao.createEntity(new PhotographerModel("Joshua King", 3));
+        photographerDao.createEntity(new PhotographerModel("Joshua King", 3));
         PhotographerModel test_photographer = photographerDao.getEntity(6);
         LOGGER.info(test_photographer);
         test_photographer.setCamera_id(2);
@@ -68,9 +72,26 @@ public class Executor {
         cameraModel.setName("Phillips");
         camera.updateEntity(cameraModel);
         LOGGER.info(camera.getEntity(4));*/
-
-
-
-
+/*
+        BillingDao billing = new BillingDao();
+        LOGGER.info(billing.getEntity(4));
+        LOGGER.info(billing.getAllEntity());
+        EventDao eventDao = new EventDao();
+        EventModel eventModel = eventDao.getEntity(2);
+        CLientDao clientDao = new CLientDao();
+        ClientModel clientModel = clientDao.getEntity(1);*/
+        //PaymentTypeDao paymentTypeDao = new PaymentTypeDao();
+        //LOGGER.info(paymentTypeDao.getEntity(1));
+        //PaymentTypeModel paymentTypeModel = paymentTypeDao.getEntity(1);
+/*        BillingModel billingModel = new BillingModel();
+        billingModel.setClientModel(clientModel);
+        billingModel.setEventModel(eventModel);
+        billingModel.setPaymentTypeModel(paymentTypeModel);
+        billing.createEntity(billingModel);
+        BillingModel billingModelUpdate = billing.getEntity(4);
+        billingModelUpdate.setEventModel(eventModel);
+        billing.updateEntity(billingModelUpdate);*/
+        CameraDao camera = new CameraDao();
+        LOGGER.info(camera.getAllEntity());
     }
 }

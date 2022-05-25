@@ -30,8 +30,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 client_has_event.setId(resultSet.getInt("id"));
-                client_has_event.setClients(getClients(resultSet.getInt("client_id")));
-                client_has_event.setEvents(getEvents(resultSet.getInt("event_id")));
+                client_has_event.setClientModel(new CLientDao().getEntity(resultSet.getInt("client_id")));
+                client_has_event.setEventModel(new EventDao().getEntity(resultSet.getInt("event_id")));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -49,8 +49,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
             while (resultSet.next()) {
                 ClientHasEventModel client_has_event = new ClientHasEventModel();
                 client_has_event.setId(resultSet.getInt("id"));
-                client_has_event.setClients(getClients(resultSet.getInt("client_id")));
-                client_has_event.setEvents(getEvents(resultSet.getInt("event_id")));
+                client_has_event.setClientModel(new CLientDao().getEntity(resultSet.getInt("client_id")));
+                client_has_event.setEventModel(new EventDao().getEntity(resultSet.getInt("event_id")));
                 allClientsEvents.add(client_has_event);
             }
         } catch (SQLException throwables) {
@@ -65,8 +65,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
     public void createEntity(ClientHasEventModel clientHasEventModel) {
         try {
             stmt = getConnection().prepareStatement(INSERT);
-            stmt.setString(1, clientHasEventModel.getClients().get(clientHasEventModel.getId()).getName());
-            stmt.setString(2, clientHasEventModel.getEvents().get(clientHasEventModel.getId()).getName());
+            stmt.setInt(1, clientHasEventModel.getClientModel().getId());
+            stmt.setInt(2, clientHasEventModel.getEventModel().getId());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -80,8 +80,8 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
         try {
             stmt = getConnection().prepareStatement(UPDATE);
             stmt.setInt(3, clientHasEventModel.getId());
-            stmt.setString(1, clientHasEventModel.getClients().get(clientHasEventModel.getId()).getName());
-            stmt.setString(2, clientHasEventModel.getEvents().get(clientHasEventModel.getId()).getName());
+            stmt.setInt(1, clientHasEventModel.getClientModel().getId());
+            stmt.setInt(2, clientHasEventModel.getEventModel().getId());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -104,42 +104,4 @@ public class ClientHasEventDao extends AbstractDao implements IClientHasEventDao
         }
     }
 
-    private List<EventModel> getEvents(int event_id) {
-        List<EventModel> events = new ArrayList<>();
-        try {
-            stmt = getConnection().prepareStatement("SELECT * FROM event where id = ?");
-            stmt.setLong(1, event_id);
-            resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                EventModel event = new EventModel();
-                event.setId(resultSet.getInt("id"));
-                event.setName(resultSet.getString("name"));
-                event.setLocationModel(event.getLocationModel());
-                events.add(event);
-            }
-        } catch (SQLException e) {
-            LOGGER.warn(e.getMessage());
-        }
-        return events;
-    }
-
-    private List<ClientModel> getClients(int client_id) {
-        List<ClientModel> clients = new ArrayList<>();
-        try {
-            stmt = getConnection().prepareStatement("SELECT * FROM client where id = ?");
-            stmt.setLong(1, client_id);
-            resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                ClientModel client = new ClientModel();
-                client.setId(resultSet.getInt("id"));
-                client.setName(resultSet.getString("name"));
-                client.setPhoneNumber(resultSet.getString("phone_number"));
-                client.setDateOfRegistration(resultSet.getString("date_of_registration"));
-                clients.add(client);
-            }
-        } catch (SQLException e) {
-            LOGGER.warn(e.getMessage());
-        }
-        return clients;
-    }
 }

@@ -1,7 +1,6 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 public class LocationModel {
@@ -48,6 +47,10 @@ public class LocationModel {
 
     @Override
     public String toString() {
-        return "[id: " + getId() + " Name: " + getName() + "Events: " + getEvents() +  "]";
+        return "Location: {" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", events=" + getEvents() +
+                '}';
     }
 }

@@ -27,7 +27,6 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
             if (resultSet.next()) {
                 admin.setId(resultSet.getInt("id"));
                 admin.setName(resultSet.getString("name"));
-                admin.setScheduleModel(new ScheduleDao().getEntity(admin.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

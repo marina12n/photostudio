@@ -29,7 +29,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                 price_list.setId(resultSet.getInt("id"));
                 price_list.setName(resultSet.getString("name"));
                 price_list.setPrice(resultSet.getString("price"));
-                price_list.setEvents(getPriceListEvents(resultSet.getInt("event_id")));
+                price_list.setEventModel(new EventDao().getEntity(resultSet.getInt("event_id")));
 
             }
         } catch (SQLException throwables) {
@@ -50,7 +50,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
                     price.setId(resultSet.getInt("id"));
                     price.setName(resultSet.getString("name"));
                     price.setPrice(resultSet.getString("price"));
-                    price.setEvents(getPriceListEvents(resultSet.getInt("event_id")));
+                    price.setEventModel(new EventDao().getEntity(resultSet.getInt("event_id")));
                     allPrices.add(price);
                 }
             } catch (SQLException throwables) {
@@ -68,7 +68,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
             //stmt.setInt(1, clientModel.getId());
             stmt.setString(1, priceListModel.getName());
             stmt.setString(2, priceListModel.getPrice());
-            stmt.setString(3, priceListModel.getEvents().get(priceListModel.getId()).getName());
+            stmt.setInt(3, priceListModel.getEventModel().getId());
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -85,7 +85,7 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
             stmt.setInt(4, priceListModel.getId());
             stmt.setString(1, priceListModel.getName());
             stmt.setString(2, priceListModel.getPrice());
-            stmt.setString(3, priceListModel.getEvents().get(priceListModel.getId()).getName());
+            stmt.setInt(3, priceListModel.getEventModel().getId());
             stmt.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -128,5 +128,4 @@ public class PriceListDao extends AbstractDao implements IPriceListDao {
         }
         return events;
     }
-
 }

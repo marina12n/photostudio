@@ -1,22 +1,21 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.List;
 
 public class BillingModel {
     private static final Logger LOGGER = LogManager.getLogger(BillingModel.class);
     private int id;
-    private List<EventModel> events;
-    private List<ClientModel> clients;
-    private PaymentTypeModel paymentType;
+    private EventModel eventModel;
+    private ClientModel clientModel;
+    private PaymentTypeModel paymentTypeModel;
 
     public BillingModel() {
     }
 
-    public BillingModel(List<EventModel> events, List<ClientModel> clients, PaymentTypeModel paymentType) {
-        this.events = events;
-        this.clients = clients;
-        this.paymentType = paymentType;
+    public BillingModel(EventModel eventModel, ClientModel clientModel, PaymentTypeModel paymentTypeModel) {
+        this.setEventModel(eventModel);
+        this.setClientModel(clientModel);
+        this.setPaymentTypeModel(paymentTypeModel);
     }
 
     public int getId() {
@@ -27,32 +26,36 @@ public class BillingModel {
         this.id = id;
     }
 
-    public List<EventModel> getEvents() {
-        return events;
+    public EventModel getEventModel() {
+        return eventModel;
     }
 
-    public void setEvents(List<EventModel> events) {
-        this.events = events;
+    public void setEventModel(EventModel eventModel) {
+        this.eventModel = eventModel;
     }
 
-    public List<ClientModel> getClients() {
-        return clients;
+    public ClientModel getClientModel() {
+        return clientModel;
     }
 
-    public void setClients(List<ClientModel> clients) {
-        this.clients = clients;
+    public void setClientModel(ClientModel clientModel) {
+        this.clientModel = clientModel;
     }
 
-    public PaymentTypeModel getPaymentType() {
-        return paymentType;
+    public PaymentTypeModel getPaymentTypeModel() {
+        return paymentTypeModel;
     }
 
-    public void setPaymentType(PaymentTypeModel paymentType) {
-        this.paymentType = paymentType;
+    public void setPaymentTypeModel(PaymentTypeModel paymentTypeModel) {
+        this.paymentTypeModel = paymentTypeModel;
     }
 
-    @Override
     public String toString() {
-        return "[" + "id: " + getId() + " Event: " + getEvents() + "; Client: " + getClients() + " Pay: " + getPaymentType() + "]";
+        return "Billing: {" +
+                "id=" + getId() +
+                ", event='" + getEventModel() + '\'' +
+                ", client=" + getClientModel() + '\'' +
+                ", paymentType=" + getPaymentTypeModel() +
+                '}';
     }
 }

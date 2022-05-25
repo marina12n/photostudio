@@ -14,7 +14,7 @@ import java.util.List;
 public class PaymentTypeDao extends AbstractDao implements IPaymentTypeDao {
     private static final Logger LOGGER = LogManager.getLogger(AdministratorDao.class);
     private static final String DELETE = "DELETE FROM payment_type WHERE id=?";
-    private static final String FIND_ALL = "SELECT * FROM payment_type ORDER BY id";
+    private static final String FIND_ALL = "SELECT * FROM payment_type";
     private static final String FIND_BY_ID = "SELECT * FROM payment_type WHERE id=?";
     private static final String INSERT = "INSERT INTO payment_type(name) VALUES(?)";
     private static final String UPDATE = "UPDATE payment_type SET name=? WHERE id=?";
@@ -22,22 +22,22 @@ public class PaymentTypeDao extends AbstractDao implements IPaymentTypeDao {
 
     @Override
     public PaymentTypeModel getEntity(long id) {
+        PaymentTypeModel paymentType = new PaymentTypeModel();
         try {
             stmt = getConnection().prepareStatement(FIND_BY_ID);
             stmt.setLong(1, id);
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                PaymentTypeModel paymentType = new PaymentTypeModel();
                 paymentType.setId(resultSet.getInt("id"));
                 paymentType.setName(resultSet.getString("name"));
-                return paymentType;
+                paymentType.setBillingModel(new BillingDao().getEntityByPayment(paymentType.getId()));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
             closeAll();
         }
-        return null;
+        return paymentType;
     }
 
     @Override

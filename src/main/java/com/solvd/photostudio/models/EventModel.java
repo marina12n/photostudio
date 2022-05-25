@@ -8,6 +8,8 @@ public class EventModel {
     private long id;
     private String name;
     private LocationModel locationModel;
+    private List<BillingModel> billingModels;
+    private List<ClientHasEventModel> clientHasEventModels;
 
     public EventModel() {
     }
@@ -16,9 +18,11 @@ public class EventModel {
         this.setName(name);
     }
 
-    public EventModel(String name, LocationModel locationModel) {
+    public EventModel(String name, LocationModel locationModel, List<BillingModel> billingModels, List<ClientHasEventModel> clientHasEventModels) {
         this.setName(name);
         this.setLocationModel(locationModel);
+        this.setBillingModels(billingModels);
+        this.setClientHasEventModels(clientHasEventModels);
     }
 
     public String getName() {
@@ -37,8 +41,6 @@ public class EventModel {
         this.id = id;
     }
 
-
-
     public LocationModel getLocationModel() {
         return locationModel;
     }
@@ -47,8 +49,30 @@ public class EventModel {
         this.locationModel = locationModel;
     }
 
+    public List<BillingModel> getBillingModels() {
+        return billingModels;
+    }
+
+    public void setBillingModels(List<BillingModel> billingModels) {
+        this.billingModels = billingModels;
+    }
+
+    public List<ClientHasEventModel> getClientHasEventModels() {
+        return clientHasEventModels;
+    }
+
+    public void setClientHasEventModels(List<ClientHasEventModel> clientHasEventModels) {
+        this.clientHasEventModels = clientHasEventModels;
+    }
+
     @Override
     public String toString() {
-        return "[" + "Id: " + getId() + "Name: " + getName() + "Location: " + getLocationModel() + "]";
+        return "Event: {" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", location=" + getLocationModel() + '\'' +
+                ", billing=" + getBillingModels() + '\'' +
+                ", clientHasEvent=" + getClientHasEventModels() +
+                '}';
     }
 }

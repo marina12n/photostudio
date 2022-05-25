@@ -1,22 +1,22 @@
 package com.solvd.photostudio.models;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 public class PhotographerModel {
     private static final Logger LOGGER = LogManager.getLogger(PhotographerModel.class);
     private int id;
     private String name;
-    private int camera_id;
+    private CameraModel cameraModel;
     private List<ScheduleModel> scheduleModels;
 
     public PhotographerModel() {
     }
 
-    public PhotographerModel(String name, int camera_id) {
+    public PhotographerModel(String name, CameraModel cameraModel, List<ScheduleModel> scheduleModels) {
         this.setName(name);
-        this.setCamera_id(camera_id);
+        this.setCameraModel(cameraModel);
+        this.setScheduleModels(scheduleModels);
     }
 
     public String getName() {
@@ -35,15 +35,6 @@ public class PhotographerModel {
         this.id = id;
     }
 
-
-    public int getCamera_id() {
-        return camera_id;
-    }
-
-    public void setCamera_id(int camera_id) {
-        this.camera_id = camera_id;
-    }
-
     public List<ScheduleModel> getScheduleModels() {
         return scheduleModels;
     }
@@ -52,11 +43,20 @@ public class PhotographerModel {
         this.scheduleModels = scheduleModels;
     }
 
+    public CameraModel getCameraModel() {
+        return cameraModel;
+    }
+
+    public void setCameraModel(CameraModel cameraModel) {
+        this.cameraModel = cameraModel;
+    }
+
     @Override
     public String toString() {
         return "Photographer: {" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
+                ", camera=" + getCameraModel() + '\'' +
                 ", schedules=" + getScheduleModels() +
                 '}';
     }
