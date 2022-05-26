@@ -13,26 +13,36 @@ public class Executor {
     public static void main(String[] args) {
         /*PriceListDao price = new PriceListDao();
         LOGGER.info(price.getAllEntity());
+
         BillingDao billing = new BillingDao();
         LOGGER.info(billing.getAllEntity());
         LOGGER.info(billing.getEntity(2));
+
         CameraDao camera = new CameraDao();
         LOGGER.info(camera.getAllEntity());
+
         AdministratorDao administrator = new AdministratorDao();
         LOGGER.info(administrator.getAllEntity());
+
         ClientHasEventDao clientHasEventDao = new ClientHasEventDao();
         LOGGER.info(clientHasEventDao.getAllEntity());
+
         EventDao eventDao = new EventDao();
         LOGGER.info(eventDao.getAllEntity());
+
         LocationDao locationDao = new LocationDao();
         LOGGER.info(locationDao.getAllEntity());
+
         PaymentTypeDao paymentTypeDao = new PaymentTypeDao();
         LOGGER.info(paymentTypeDao.getAllEntity());
+
         PhotographerDao photographerDao = new PhotographerDao();
         LOGGER.info(photographerDao.getAllEntity());
+
         ScheduleDao scheduleDao = new ScheduleDao();
         LOGGER.info(scheduleDao.getAllEntity());
         LOGGER.info("----------------------------------------------------");
+
         CLientDao client = new CLientDao();
         LOGGER.info(client.getAllEntity());
         ClientModel clmod = new ClientModel();
@@ -76,13 +86,17 @@ public class Executor {
         BillingDao billing = new BillingDao();
         LOGGER.info(billing.getEntity(4));
         LOGGER.info(billing.getAllEntity());
+
         EventDao eventDao = new EventDao();
         EventModel eventModel = eventDao.getEntity(2);
+
         CLientDao clientDao = new CLientDao();
         ClientModel clientModel = clientDao.getEntity(1);*/
-        //PaymentTypeDao paymentTypeDao = new PaymentTypeDao();
-        //LOGGER.info(paymentTypeDao.getEntity(1));
+
+//       PaymentTypeDao paymentTypeDao = new PaymentTypeDao();
+//       LOGGER.info(paymentTypeDao.getEntity(1));
         //PaymentTypeModel paymentTypeModel = paymentTypeDao.getEntity(1);
+
 /*        BillingModel billingModel = new BillingModel();
         billingModel.setClientModel(clientModel);
         billingModel.setEventModel(eventModel);

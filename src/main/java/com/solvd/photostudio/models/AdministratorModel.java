@@ -30,8 +30,6 @@ public class AdministratorModel {
         this.id = id;
     }
 
-
-
     @Override
     public String toString() {
         return "Administrator: {" +

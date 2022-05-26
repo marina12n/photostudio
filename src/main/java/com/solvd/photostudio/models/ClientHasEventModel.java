@@ -48,5 +48,4 @@ public class ClientHasEventModel {
             ", client=" + getClientModel() +
             '}';
 }
-
 }

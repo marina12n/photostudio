@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.photostudio.dao.IAdministratorDAO">
+    <resultMap id="administratorResultMap" type="com.solvd.photostudio.dao.IAdministratorDAO">
+    <id property="id" column="id" javaType="int"/>
+    <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="selectAdministrator" resultType="com.solvd.photostudio.models.AdministratorModel">
+        select * from administrator where id = #{id}
+    </select>
+</mapper>
