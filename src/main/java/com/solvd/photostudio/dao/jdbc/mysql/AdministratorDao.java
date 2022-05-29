@@ -74,7 +74,7 @@ public class AdministratorDao extends AbstractDao implements IAdministratorDAO {
     public void updateEntity(AdministratorModel administratorModel) {
         try {
             stmt = getConnection().prepareStatement(UPDATE);
-            stmt.setInt(2, administratorModel.getId());
+            stmt.setLong(2, administratorModel.getId());
             stmt.setString(1, administratorModel.getName());
             stmt.executeUpdate();
 
