@@ -17,6 +17,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="AdministratorMapper.xml" />
+        <mapper resource="MyBatis/AdministratorMapper.xml" />
     </mappers>
 </configuration>
